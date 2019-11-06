@@ -11,7 +11,7 @@ class SideBar extends Component {
   render() {
     return (
       <SideBarWrapper>
-        <SideBarTitle>Lambda Notes </SideBarTitle>
+        <SideBarTitle>Notes</SideBarTitle>
         <SideBarLinksWrapper>
           <NavLink exact to="/">
             <Btn>View Your Notes</Btn>
