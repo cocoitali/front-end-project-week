@@ -135,7 +135,7 @@ export const NoteCard = styled.div`
 export const NoteViewWrapper = styled.div`
   width: 100%;
   max-width: 665px;
-  background: #f2f1f2;
+  background: #DB926E;
 `;
 export const NoteWrapper = styled.div`
   margin: 4%;
@@ -144,26 +144,41 @@ export const ModifyNoteWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
+
+// color: #414242;
+// cursor: pointer;
+// margin: 5px;
+// text-decoration: underline;
+// font-weight: bold;
+// :hover {
+//   color: #57b5bb;
+// }
 export const EditLink = styled(Link)`
-  color: #414242;
-  cursor: pointer;
-  margin: 5px;
-  text-decoration: underline;
-  font-weight: bold;
-  :hover {
-    color: #57b5bb;
-  }
+display: inline-block;
+border-radius: 3px;
+padding: 0.5rem 0;
+margin: 0.5rem 1rem;
+width: 11rem;
+background: transparent;
+color: white;
+border: 2px solid white;
 `;
 
-export const Delete = styled.div`
-text-decoration: underline;
-cursor: pointer;
-font-weight: bold;
-color: #414242;
-margin-top: 5px;
-:hover {
-  color: #57b5bb;
-}
+// cursor: pointer;
+// font-weight: bold;
+// color: #414242;
+// margin-top: 5px;
+// :hover {
+//   color: #57b5bb;
+// }
+export const Delete = styled.button`
+border-radius: 3px;
+padding: 0.5rem 0;
+margin: 0.5rem 1rem;
+width: 11rem;
+background: transparent;
+color: white;
+border: 2px solid white;
 `;
 
 export const SingleNoteTitle = styled.h3``;

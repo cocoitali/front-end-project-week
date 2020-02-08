@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
 import axios from "axios";
-class ModalExample extends React.Component {
+class DeleteModal extends React.Component {
   deleteNote = id => {
     axios
       .delete(`https://fe-notes.herokuapp.com/note/delete/${this.props.id}`)
@@ -33,4 +33,4 @@ class ModalExample extends React.Component {
   }
 }
 
-export default ModalExample;
+export default DeleteModal;
