@@ -45,12 +45,13 @@ export const Btn = styled.button`
 
 //CreateNewView.js
 export const CreateViewWrapper = styled.div`
-width: 75%
-max-width: 665px;
-background: #F2F1F2;
-margin-top: 50px;
+  width: 75%
+  max-width: 665px;
+  background: #db926e;
+
 `
 export const CreateHeader = styled.h3`
+	margin-top: 50px;
 	margin-left: 25px;
 `
 export const Form = styled.form`
@@ -59,25 +60,27 @@ export const Form = styled.form`
 	margin-left: 25px;
 `
 export const TitleInput = styled.input`
-  width: 54%; 
-  max-width: 358px;
-  height: 43px;
-  border: 2px solid #B7B7B7
-  background: white;
+	width: 54%;
+	max-width: 358px;
+	height: 43px;
+	border: 2px solid #b7b7b7;
+	border-radius: 3px;
+	background: white;
 `
 export const ContentInput = styled.input`
-  width: 91%;
-  max-width: 605px;
-  height: 348px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  border: 2px solid #B7B7B7
-  background: white;
+	width: 91%;
+	max-width: 605px;
+	height: 348px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	border: 2px solid #b7b7b7;
+	border-radius: 3px;
+	background: white;
 `
 
 //ListView.js
 export const ListViewWrapper = styled.div`
-  background: #db926e;
+	background: #db926e;
 	width: 100%;
 	height: 100vh;
 	overflow-y: scroll;
@@ -109,17 +112,19 @@ export const NoteCardLink = styled(Link)`
 	text-decoration: none;
 `
 export const NoteCard = styled.div`
+	border-radius: 3px;
+	padding: 0.5rem 0;
+	margin: 0.5rem 1rem;
+	width: 11rem;
 	margin-right: 7.5px;
 	margin-left: 7.5px;
 	margin-top: 12.5px;
 	margin-bottom: 12.5px;
 	background: white;
-	width: 192px;
 	height: 200px;
 	padding: 5px;
 	overflow-y: scroll;
 	overflow-wrap: break-word;
-	border: 2px solid #c5c5c5;
 	color: black;
 	cursor: pointer;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
