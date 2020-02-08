@@ -77,7 +77,7 @@ export const ContentInput = styled.input`
 
 //ListView.js
 export const ListViewWrapper = styled.div`
-	background: #f2f1f2;
+  background: #db926e;
 	width: 100%;
 	height: 100vh;
 	overflow-y: scroll;
