@@ -12,8 +12,8 @@ import reducer from './reducers'
 const store = createStore(reducer)
 
 ReactDOM.render(
-  <Router>
-    <Provider store ={store}><App /></Provider>
-  </Router>,
+  <Provider store ={store}><Router>
+  <App />
+  </Router></Provider>,
   document.getElementById("root")
 );
