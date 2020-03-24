@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { addNote } from '../actions'
 import {
@@ -17,14 +17,17 @@ const CreateNewView = props => {
 		newNote: {}
 	})
 
-	const addNote = e => {
-		e.preventDefault()
-		axios
-			.post('https://fe-notes.herokuapp.com/note/create', this.state)
-			.then(res => {
-				setNewNote({ title: '', textBody: '' })
-			})
-			.catch(err => console.log(err, 'failed to create'))
+	const addNote = (e) => {
+		useEffect(() => {
+			e.preventDefault()
+			axios
+				.post('https://fe-notes.herokuapp.com/note/create', newNote)
+				.then(res => {
+					setNewNote({ title: '', textBody: '' })
+				})
+				.catch(err => console.log(err, 'failed to create'))
+		}, [])
+		
 	}
 
 	const changeHandler = e => {
@@ -37,19 +40,19 @@ const CreateNewView = props => {
 		<CreateViewWrapper>
 			<CreateHeader>Create New Note:</CreateHeader>
 
-			<Form onSubmit={e => addNote()}>
+			<Form onSubmit={e => addNote(e)}>
 				<TitleInput
 					name='title'
 					type='text'
 					value={newNote.title}
-					onChange={e => changeHandler()}
+					onChange={e => changeHandler(e)}
 					placeholder='Note Title'
 				/>
 				<ContentInput
 					name='textBody'
 					type='text'
-					value={this.state.textBody}
-					onChange={this.changeHandler}
+					value={newNote.textBody}
+					onChange={e =>changeHandler(e)}
 					placeholder='Note Content'
 				/>
 				<Btn type='submit'>Save</Btn>
