@@ -1,69 +1,75 @@
-import React, { Component } from "react";
-import axios from "axios";
-import DeleteModal from "./DeleteModal";
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
+import DeleteModal from './DeleteModal'
 import {
-  NoteViewWrapper,
-  NoteWrapper,
-  SingleNoteTitle,
-  SingleNoteText,
-  ModifyNoteWrapper,
-  EditLink,
-  Delete
-} from "./Styled";
+	NoteViewWrapper,
+	NoteWrapper,
+	SingleNoteTitle,
+	SingleNoteText,
+	ModifyNoteWrapper,
+	EditLink,
+	Delete
+} from './Styled'
 
-class NoteView extends Component {
-  constructor() {
-    super();
-    this.state = {
-      title: "",
-      textBody: "",
-      id: "",
-      modal: false
-    };
-    this.toggle = this.toggle.bind(this);
-  }
+const NoteView = props => {
+	const [view, setView] = useState({
+		title: '',
+		textBody: '',
+		id: '',
+		modal: false
+	})
 
-  componentDidMount() {
-    axios
-      .get(
-        `https://fe-notes.herokuapp.com/note/get/${this.props.match.params.id}`
-      )
-      .then(res => {
-        this.setState({
-          textBody: res.data.textBody,
-          title: res.data.title,
-          id: res.data._id
-        });
-      })
-      .catch(err => console.log(err));
-  }
+	useEffect(() => {
+		let params = useParams()
+		const getData = async () => {
+			const result = await axios(
+				`https://fe-notes.herokuapp.com/note/get/${params.id}`
+			)
+			setView(result.view)
+		}
+		getData()
+	}, [])
+	// We only want to fetch data when the component mounts.
+	// That's why you can provide an empty array as second argument
+	// to the effect hook to avoid activating it on component updates
+	// but only for the mounting of the component.
 
-  toggle() {
-    this.setState({
-      modal: !this.state.modal
-    });
-  }
+	// useEffect(async () => {
+	//   axios
+	//     .get(
+	//       `https://fe-notes.herokuapp.com/note/get/${this.props.match.params.id}`
+	//     )
+	//     .then(res => {
+	//       setView({
+	//         textBody: res.data.textBody,
+	//         title: res.data.title,
+	//         id: res.data._id
+	//       });
+	//     })
+	//     .catch(err => console.log(err));
+	// })
 
-  render() {
-    return (
-      <NoteViewWrapper>
-        <NoteWrapper>
-          <ModifyNoteWrapper>
-            <EditLink to={`/note/edit/${this.state.id}`}>edit</EditLink>
-            <Delete onClick={this.toggle}>delete</Delete>
-          </ModifyNoteWrapper>
+	const toggle = () => {
+		setView({
+			modal: !view.modal
+		})
+	}
 
-          <SingleNoteTitle>{this.state.title}</SingleNoteTitle>
-          <SingleNoteText>{this.state.textBody}</SingleNoteText>
-        </NoteWrapper>
-        <DeleteModal
-          modal={this.state.modal}
-          toggle={this.toggle}
-          id={this.state.id}
-        />
-      </NoteViewWrapper>
-    );
-  }
+	return (
+		<NoteViewWrapper>
+			<NoteWrapper>
+				<ModifyNoteWrapper>
+					<EditLink to={`/note/edit/${view.id}`}>edit</EditLink>
+					<Delete onClick={e => toggle(e)}>delete</Delete>
+				</ModifyNoteWrapper>
+
+				<SingleNoteTitle>{view.title}</SingleNoteTitle>
+				<SingleNoteText>{view.textBody}</SingleNoteText>
+			</NoteWrapper>
+			<DeleteModal modal={view.modal} toggle={e => toggle(e)} id={view.id} />
+		</NoteViewWrapper>
+	)
 }
 
-export default NoteView;
+export default NoteView
